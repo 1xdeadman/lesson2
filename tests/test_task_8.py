@@ -18,7 +18,7 @@ def read_file(path, data):
     with open(path, 'r', encoding='utf-8') as file:
         for test_row in data_iter:
             line = file.readline()
-            print(line)
+            # print(line)
             # for line in file:
             line = line.strip()
             #     test_row = next(data_iter)
@@ -28,20 +28,24 @@ def read_file(path, data):
 
 @pytest.fixture()
 def getfile():
+    if not os.path.isdir("Data"):
+        os.mkdir("Data")
     path = "Data/test1.random_ext"
     yield path
     remove_file(path)
 
 
-@pytest.fixture()
-def rnd_filename():
-    filename = f"filename {rnd.randint(0, 100)}"
+@pytest.fixture(params=[x for x in range(100)])
+def rnd_filename(request):
+    if not os.path.isdir("Data"):
+        os.mkdir("Data")
+    filename = f"filename {request.param}"
     yield filename
-    remove_file(filename)
+    remove_file(f"Data/{filename}")
 
 
 @pytest.mark.task_8
-def test_write_data():
+def test_write_data(getfile):
 
     for i in range(10):
         remove_file(getfile)
@@ -51,7 +55,7 @@ def test_write_data():
         task_8.write_data(data)
         task_8.write_data(data)
         read_file(getfile, data)
-        # remove_file(path)
+        remove_file(getfile)
 
 
 @pytest.mark.task_8
@@ -59,14 +63,19 @@ def test_find_data(rnd_filename):
     secret_subrow = "supersecretrow"
     rows = ["row " + str(x) for x in range(10)]
 
-    rand_rows = [0] * rnd.randint(0, 10)
+    rand_rows = [0] * rnd.randint(1, 9)
     for index in range(len(rand_rows)):
-        rand_rows[index] = rnd.randint(0, 10)
-        rows[rand_rows[index]] += secret_subrow + 'asdcwe fdv'
+        rand_rows[index] = rnd.randint(0, len(rows) - 1)
+
+    rand_rows = sorted(list(set(rand_rows)))
+    for rand in rand_rows:
+        rows[rand] += secret_subrow + 'asdcwe fdv'
 
     with open(f"Data/{rnd_filename}", 'w', encoding='utf-8') as file:
         file.writelines(list(map(lambda x: x + '\n', rows)))
     test_rows = task_8.find_data(rnd_filename, secret_subrow)
+
     for index, secret_rows_index in enumerate(rand_rows):
         assert rows[secret_rows_index] == test_rows[index]
-    remove_file(f"Data/{rnd_filename}")
+    print(1)
+    # remove_file(f"Data/{rnd_filename}")
