@@ -1,6 +1,6 @@
 import pytest
 import random as rnd
-import src.task_5 as task_5
+import tasks.task_5 as task_5
 
 
 @pytest.mark.task_5
@@ -9,8 +9,9 @@ def test_add_new_elem():
     data = [x for x in range(100)]
     rnd.shuffle(data)
     new_data = rnd.randbytes(10)
-    task_5.add_new_elems(data, new_data)
+    test_new_size = task_5.add_new_elem(data, new_data)
     assert data[-1] == new_data
+    assert test_new_size == 101
 
 
 @pytest.mark.task_5
@@ -18,11 +19,18 @@ def test_change_elem():
 
     data = [x for x in range(100)]
     rnd.shuffle(data)
-    new_data = "new data"
+    new_data = 123
     index = rnd.randint(0, len(data) - 1)
-    task_5.change_elem(data, index, new_data)
-    assert data[-1] == new_data
+    sample_old = data[index]
+    old = task_5.change_elem(data, index, new_data)
+    assert data[index] == new_data
+    assert sample_old == old
 
+    wrong_data = "new data"
+    sample_old = data[index]
+    old = task_5.change_elem(data, index, wrong_data)
+    assert data[index] == sample_old
+    assert old is None
 
 @pytest.mark.task_5
 def test_delete_elem():
@@ -31,11 +39,15 @@ def test_delete_elem():
     data.extend(data)
     old_size = len(data)
     rnd.shuffle(data)
-    index = rnd.randint(0, len(data) - 1)
-    old_value = data[index]
-    task_5.delete_elem(data, index)
-    assert len(data) == old_size - 1
-    assert data[index] == data
+    sample_data = data.copy()
+    i = 0
+    while i < len(sample_data):
+        if sample_data[i] % 2 == 0:
+            del sample_data[i]
+            i -= 1
+        i += 1
+    task_5.remove_even_elems(data)
+    assert data == data
 
 
 def gen_key(index: int) -> str:

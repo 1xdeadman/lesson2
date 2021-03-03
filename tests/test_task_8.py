@@ -1,6 +1,6 @@
 import pytest
 import random as rnd
-import src.task_8 as task_8
+import tasks.task_8 as task_8
 import os
 
 

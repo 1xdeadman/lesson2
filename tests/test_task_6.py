@@ -1,6 +1,6 @@
 import pytest
 import random as rnd
-import src.task_6 as task_6
+import tasks.task_6 as task_6
 
 
 @pytest.mark.task_6
