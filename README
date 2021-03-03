@@ -2,7 +2,8 @@
 pip install -r requirements.txt
 
 Для запуска venv введите одну из команд в консоли, находясь в корне проекта:
-- для linux и mac: source bin/activate"
+- для linux и mac:
+     - source bin/activate
 - для windows:
      - при работе в cmd: venv\Scripts\activate.bat
      - при работе в powershell: .\venv\Scripts\Activate.ps1
