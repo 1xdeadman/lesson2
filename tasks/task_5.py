@@ -37,10 +37,10 @@ def remove_even_elems(container: list) -> None:
     "<YOUR CODE>"
 
 
-def get_sub_dict_elem(container: dict, key: str, subkey: Union[str, int]) -> int:
+def get_sub_dict_elem(container: dict, key: str, subkey: Union[str, int]) -> Optional[int]:
     # TODO: получите из подсловаря словаря container по ключу key элемент по ключу subkey.
     #  Запишите его в переменную result
-    result = "you are not prepared!"
+    result = None
 
     result = "<YOUR CODE>"
 

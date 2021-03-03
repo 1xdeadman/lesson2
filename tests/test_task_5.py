@@ -6,16 +6,25 @@ import tasks.task_5 as task_5
 @pytest.mark.task_5
 def test_add_new_elem():
 
-    data = [x for x in range(100)]
+    # TODO: добавьте в конец списока container новый элемент со значением переменной new_data
+    #  запишите в переменную result значение нового размера списка
+
+    size = 100
+    data = [x for x in range(size)]
     rnd.shuffle(data)
+    old_data = data.copy()
     new_data = rnd.randbytes(10)
     test_new_size = task_5.add_new_elem(data, new_data)
+    assert test_new_size == size + 1
     assert data[-1] == new_data
-    assert test_new_size == 101
+    assert old_data == data[:size]
 
 
 @pytest.mark.task_5
 def test_change_elem():
+    # TODO: измените в списке container элемент под индексом index на значение переменной new_data
+    #  старое значение запишите в переменную result
+    #  если new_data имеет тип, отличный от int - не выполняйте замену значения и не записывайте ничего в result.
 
     data = [x for x in range(100)]
     rnd.shuffle(data)
@@ -32,8 +41,13 @@ def test_change_elem():
     assert data[index] == sample_old
     assert old is None
 
+
 @pytest.mark.task_5
 def test_delete_elem():
+    # TODO: удалите из списка container каждый элемент, значение которого будет четным.
+    #  Размер списка после удаления одного элемента уменьшается на 1.
+    #  После удаления по индексу index будет находиться элемент, ранее находившийся на позиции index + 1
+
 
     data = [x for x in range(100)]
     data.extend(data)
@@ -60,6 +74,8 @@ def gen_value(index: int) -> str:
 
 @pytest.mark.task_5
 def test_get_sub_dict_elem():
+    # TODO: получите из подсловаря словаря container по ключу key элемент по ключу subkey.
+    #  Запишите его в переменную result
 
     temp_keys = [[gen_key(x), gen_value(x)] for x in range(100)]
     rnd.shuffle(temp_keys)
