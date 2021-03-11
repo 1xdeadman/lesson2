@@ -32,7 +32,7 @@ def test_sum_values():
     res = task_6.sum_values(1, 2, 3, 4)
     assert res == (1 + 2 + 3 + 4, 4)
 
-    numbers = [x ** 2 for x in range(1000) if x %2 == 0]
+    numbers = [(rnd.randint(0, 100)) ** 2 for x in range(1000) if x % 2 == 0]
     for i in range(100):
             count = rnd.randint(3, len(numbers) - 1)
             sample = rnd.sample(numbers, count)

@@ -1,14 +1,16 @@
 """
 Внимательно прочитайте код в этом файле и добавьте свой код везде, где встречается <YOUR CODE>.
 Перед каждым заданием вы можете прочитать его описание, помеченное меткой TODO.
-для проверки введите из папки с проектом: pytest -m task_5
+для проверки введите из папки с проектом: pytest -vm task_5
 """
 from typing import Any, Union, Optional
 
 
 def add_new_elem(container: list, new_data: Any) -> Optional[int]:
-    # TODO: добавьте в конец списока container новый элемент со значением переменной new_data
-    #  запишите в переменную result значение нового размера списка
+    """
+    TODO: добавьте в конец списка container новый элемент со значением переменной new_data
+        запишите в переменную result значение нового размера списка
+    """
 
     result = None
 
@@ -38,7 +40,7 @@ def remove_even_elems(container: list) -> None:
 
 
 def get_sub_dict_elem(container: dict, key: str, subkey: Union[str, int]) -> Optional[int]:
-    # TODO: получите из подсловаря словаря container по ключу key элемент по ключу subkey.
+    # TODO: получите из подсловаря словаря container, расположенному по ключу key элемент по ключу subkey.
     #  Запишите его в переменную result
     result = None
 

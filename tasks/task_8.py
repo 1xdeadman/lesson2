@@ -33,6 +33,7 @@ def find_data(filename: str, substring: str) -> list[str]:
 
     result = []
 
+
     # TODO: откройте файл filename из папке lesson2/Data/. Важно, что в переменой filename хранится ТОЛЬКО имя файла
     #  и его расширение. Найдите в файле все строки, содержащие стоку substring. Запишите их в список result.
     #  Строки записываются без символа переноса строки.
